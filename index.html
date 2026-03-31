@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMIWAN | Shake Tutorial</title>
+    <title>EMIEWN | Assets</title>
+    
+    <!-- This is the Favicon (Tab Logo). It's currently a minimal white 'E' -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='white' font-family='sans-serif'>E</text></svg>">
+
     <style>
         :root {
             --bg: #000000;
             --text: #ffffff;
             --accent: #222222;
             --gray: #666666;
+            --hover: #fcfcfc;
         }
 
         body {
@@ -19,101 +24,157 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            padding: 60px 20px;
             margin: 0;
-            padding: 20px;
+            min-height: 100vh;
         }
 
-        header { text-align: center; margin-bottom: 80px; }
-        h1 { font-weight: 200; letter-spacing: 10px; text-transform: uppercase; font-size: 1.4rem; margin: 0; }
+        header { text-align: center; margin-bottom: 60px; }
+        h1 { 
+            font-weight: 200; 
+            letter-spacing: 10px; 
+            text-indent: 10px; 
+            text-transform: uppercase; 
+            font-size: 1.4rem; 
+            margin: 0; 
+            cursor: default;
+        }
 
-        .download-box {
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            animation: fadeIn 1s ease forwards;
+        .container { max-width: 600px; width: 100%; }
+
+        /* Category Headers */
+        .category-title {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        /* Preset Cards */
+        .preset-card {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--accent);
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
         }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        h2 { font-size: 1.1rem; font-weight: 400; letter-spacing: 1px; margin-bottom: 10px; color: #ccc; }
-        .support-note { font-size: 0.7rem; color: var(--gray); margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
+        .preset-info h2 { font-size: 1rem; font-weight: 400; margin: 0 0 5px 0; color: #eee; letter-spacing: 1px;}
+        .preset-info p { font-size: 0.75rem; color: var(--gray); margin: 0; }
 
-        /* Version Selector */
-        .version-selector {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 40px;
+        /* Download Buttons */
+        .download-btn {
+            text-decoration: none;
+            color: var(--text);
+            border: 1px solid var(--accent);
+            padding: 8px 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            cursor: pointer;
+            background: transparent;
         }
 
+        .download-btn:hover {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+        }
+
+        /* Version Selector (Inside Card) */
+        .project-card { align-items: flex-end; }
+        .version-selector { display: flex; gap: 5px; margin-top: 10px; }
+        
         .v-btn {
             background: none;
             border: 1px solid var(--accent);
             color: var(--gray);
-            padding: 10px 20px;
+            padding: 4px 10px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             transition: 0.3s;
-            font-family: inherit;
         }
-
+        
         .v-btn:hover { border-color: #555; color: #fff; }
-        .v-btn.active {
-            border-color: var(--text);
-            color: var(--bg);
-            background: var(--text);
-        }
+        .v-btn.active { border-color: var(--text); color: var(--bg); background: var(--text); }
 
-        /* Main Download Button */
-        .main-download {
-            display: inline-block;
-            text-decoration: none;
-            background: none;
-            border: 1px solid var(--text);
-            color: var(--text);
-            padding: 15px 40px;
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .main-download:hover {
-            background: var(--text);
-            color: var(--bg);
-            transform: scale(1.05);
-        }
-
-        footer { margin-top: 100px; color: #333; font-size: 0.6rem; letter-spacing: 2px; }
+        footer { margin-top: auto; padding-top: 100px; color: #333; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;}
     </style>
 </head>
 <body>
 
     <header>
-        <h1>EMIWAN</h1>
+        <h1>EMIEWN</h1>
     </header>
 
-    <div class="download-box">
-        <h2>SHAKE TUTORIAL PROJECT FILE</h2>
-        <p class="support-note">Versions below 2023 not supported</p>
+    <div class="container">
 
-        <div class="version-selector">
-            <button class="v-btn" onclick="setVersion('23')" id="btn23">2023</button>
-            <button class="v-btn" onclick="setVersion('24')" id="btn24">2024</button>
-            <button class="v-btn active" onclick="setVersion('25')" id="btn25">2025</button>
-            <button class="v-btn" onclick="setVersion('26')" id="btn26">2026</button>
+        <!-- CCs SECTION -->
+        <div class="category-title">Color Corrections</div>
+        
+        <div class="preset-card" style="animation-delay: 0.1s;">
+            <div class="preset-info">
+                <h2>Dark Aesthetic CC</h2>
+                <p>.ffx Preset</p>
+            </div>
+            <a href="files/CCs/Dark aesthetic CC.ffx" download="EMIEWN_Dark_Aesthetic_CC.ffx" class="download-btn">Download</a>
         </div>
 
-        <a href="#" id="downloadLink" class="main-download" download>Download Project</a>
+        <div class="preset-card" style="animation-delay: 0.2s;">
+            <div class="preset-info">
+                <h2>Hardstyle CC</h2>
+                <p>.ffx Preset</p>
+            </div>
+            <!-- Note: Kept your exact file spelling 'Hardstlye' in the href so the link works! -->
+            <a href="files/CCs/Hardstlye CC.ffx" download="EMIEWN_Hardstyle_CC.ffx" class="download-btn">Download</a>
+        </div>
+
+
+        <!-- SHAKES SECTION -->
+        <div class="category-title" style="animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards; animation-name: fadeIn;">Shakes</div>
+
+        <div class="preset-card" style="animation-delay: 0.4s;">
+            <div class="preset-info">
+                <h2>Hardstyle Shake</h2>
+                <p>.ffx Preset</p>
+            </div>
+            <a href="files/Shakes/Hardstyle Shake.ffx" download="EMIEWN_Hardstyle_Shake.ffx" class="download-btn">Download</a>
+        </div>
+
+
+        <!-- PROJECT FILES SECTION -->
+        <div class="category-title" style="animation-delay: 0.5s; opacity: 0; animation-fill-mode: forwards; animation-name: fadeIn;">Project Files</div>
+
+        <div class="preset-card project-card" style="animation-delay: 0.6s;">
+            <div class="preset-info">
+                <h2>Shake Tutorial</h2>
+                <p>Select AE Version</p>
+                <div class="version-selector">
+                    <button class="v-btn" onclick="setVersion('23')" id="btn23">2023</button>
+                    <button class="v-btn" onclick="setVersion('24')" id="btn24">2024</button>
+                    <button class="v-btn active" onclick="setVersion('25')" id="btn25">2025</button>
+                    <button class="v-btn" onclick="setVersion('26')" id="btn26">2026</button>
+                </div>
+            </div>
+            <a href="files/Shake Tutorial Project-File/EMIEWN shake preset 25x.aep" id="projectDownload" download class="download-btn">Download</a>
+        </div>
+
     </div>
 
-    <footer>EST. 2024 — ALL ASSETS FREE</footer>
+    <footer>EST. 2026 — ALL ASSETS FREE</footer>
 
     <script>
         // Mapping versions to your exact file paths
-        const files = {
+        const projectFiles = {
             '23': 'files/Shake Tutorial Project-File/EMIEWN shake preset 23x.aep',
             '24': 'files/Shake Tutorial Project-File/EMIEWN shake preset 24.x.aep',
             '25': 'files/Shake Tutorial Project-File/EMIEWN shake preset 25x.aep',
@@ -121,17 +182,14 @@
         };
 
         function setVersion(ver) {
-            // 1. Update the Download Link URL
-            const link = document.getElementById('downloadLink');
-            link.href = files[ver];
+            // Update the Download Link URL
+            const link = document.getElementById('projectDownload');
+            link.href = projectFiles[ver];
 
-            // 2. Update Button UI
+            // Update Button UI
             document.querySelectorAll('.v-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('btn' + ver).classList.add('active');
         }
-
-        // Initialize with 2025 version
-        setVersion('25');
     </script>
 
 </body>
